@@ -1,50 +1,29 @@
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Resources from './pages/Resources' 
+import Guide from './pages/Guide'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Resources from '/resources/Resources' 
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [page, setPage] = useState('home');
-
+  
   return (
-    <>
-    {}
-      <nav>
-        <button onClick={() => setPage('home')}>Home</button>
-        <button onClick={() => setPage('resources')}>Resources</button>
-      </nav>
-    {} 
-      {page === 'home' && (
-      <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router> 
+      <div className="App">
+        <div className="header">
+          <Link to="/"><button className="headerBtn"> Home </button></Link>
+          <Link to="/resources"><button className="headerBtn"> Resources </button></Link>
+          <Link to="/guide"><button className="headerBtn"> Guide </button></Link>
+        </div>
+        <h1 className="title">EzRecycle</h1>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/resources" element={<Resources/>} />
+          <Route path="/guide" element={<Guide/>} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-{}
-      {page === 'resources' && <Resources />}
-    </>
+    </Router>
   );
 }
 

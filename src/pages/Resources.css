@@ -1,0 +1,23 @@
+.resources-container {
+  padding: 1rem;
+  text-align: left;
+}
+
+.resources-container h1 {
+  color: #4caf50;
+  font-size: 2rem;
+}
+
+.resources-container ul {
+  list-style-type: square;
+  padding-left: 1.5rem;
+}
+
+.resources-container li a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.resources-container li a:hover {
+  text-decoration: underline;
+}
