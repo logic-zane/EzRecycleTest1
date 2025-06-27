@@ -2,12 +2,22 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Resources from '/resources/Resources' 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState('home');
 
   return (
     <>
+    {}
+      <nav>
+        <button onClick={() => setPage('home')}>Home</button>
+        <button onClick={() => setPage('resources')}>Resources</button>
+      </nav>
+    {} 
+      {page === 'home' && (
+      <>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -30,6 +40,12 @@ function App() {
       </p>
     </>
   )
+}
+
+{}
+      {page === 'resources' && <Resources />}
+    </>
+  );
 }
 
 export default App
