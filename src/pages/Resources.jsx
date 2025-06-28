@@ -1,5 +1,6 @@
 import React from 'react';
 import './Resources.css';
+import exampleImg from '../assets/slideshow_pics/react.svg';
 
 function Resources(){
     return (
@@ -13,7 +14,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Paper/CardBoard</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
@@ -25,7 +26,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Plastics</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
@@ -39,7 +40,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Metals</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
@@ -51,7 +52,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Glass</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
@@ -65,7 +66,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Avoid trying to recycle the following items:</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
@@ -77,7 +78,7 @@ function Resources(){
                 <div className="recylying-card">
                     <h3 className='card-category'>Special Item Recycling</h3>
                     <img 
-                    src="slideshow_pics/example.png" 
+                    src={exampleImg}
                     style={{ width: '100%' }} 
                     />
                     <p className="card-description">
