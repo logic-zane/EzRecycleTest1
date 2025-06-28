@@ -3,7 +3,6 @@ import Home from './pages/Home'
 import Resources from './pages/Resources' 
 import Guide from './pages/Guide'
 import { useState } from 'react'
-import './App.css'
 
 function App() {
   
