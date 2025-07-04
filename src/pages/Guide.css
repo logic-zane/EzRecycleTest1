@@ -1,0 +1,488 @@
+/* Guide Component Styles */
+.guide-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.guide-container h1 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* Form Styles */
+.guide-form {
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.item-input,
+.location-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.item-input:focus,
+.location-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.primary-button,
+.secondary-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.secondary-button {
+  background: #fff;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: #4caf50;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #f44336;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+/* Results Styles */
+.guidance-results {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.guidance-results h2 {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  margin: 0;
+  padding: 15px 20px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guidance-results > div {
+  border-bottom: 1px solid #eee;
+}
+
+.guidance-results > div:last-child {
+  border-bottom: none;
+}
+
+/* Analysis Section */
+.analysis-section {
+  padding: 20px;
+}
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.analysis-grid > div {
+  background: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.recyclability.yes {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.recyclability.no {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.recyclability.special {
+  color: #f57c00;
+  font-weight: bold;
+}
+
+/* Instructions Section */
+.instructions-section {
+  padding: 20px;
+}
+
+.instruction-item {
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.instruction-item strong {
+  color: #2e7d32;
+}
+
+/* Warnings Section */
+.warnings-section {
+  padding: 20px;
+  background: #fff3e0;
+}
+
+.warnings-section h2 {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+}
+
+.warnings-section ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.warnings-section li {
+  margin: 8px 0;
+  color: #e65100;
+  font-weight: 500;
+}
+
+/* Impact Section */
+.impact-section {
+  padding: 20px;
+  background: #e8f5e8;
+}
+
+.impact-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2e7d32;
+  margin: 15px 0;
+}
+
+/* Alternatives Section */
+.alternatives-section {
+  padding: 20px;
+}
+
+.alternative-group {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.alternative-group h3 {
+  color: #2e7d32;
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+}
+
+.alternative-group ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.alternative-group li {
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+/* Tips Section */
+.tips-section {
+  padding: 20px;
+  background: #e3f2fd;
+}
+
+.tips-section h2 {
+  background: linear-gradient(135deg, #2196f3, #1976d2);
+}
+
+.tips-section ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.tips-section li {
+  margin: 10px 0;
+  line-height: 1.5;
+  color: #1565c0;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 8px;
+  background: linear-gradient(90deg, #4caf50, #66bb6a);
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+/* Multi-Step Form Styles */
+.form-step {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background: white;
+}
+
+.form-step h2 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  border-bottom: 2px solid #e8f5e8;
+  padding-bottom: 10px;
+}
+
+.step-description {
+  color: #666;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.checkbox-item:hover {
+  border-color: #4caf50;
+  background: #f8f9fa;
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  accent-color: #4caf50;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkbox-label {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.checkbox-item:has(input:checked) {
+  border-color: #4caf50;
+  background: #e8f5e8;
+}
+
+.checkbox-label {
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+/* Select Input Styles */
+.select-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.select-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Textarea Styles */
+.textarea-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.textarea-input:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Navigation Button Styles */
+.next-button,
+.back-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  margin-top: 15px;
+}
+
+.next-button:hover {
+  background: linear-gradient(135deg, #45a049, #3d8b40);
+  transform: translateY(-1px);
+}
+
+.back-button {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid #ddd;
+}
+
+.back-button:hover {
+  background: #e0e0e0;
+  color: #333;
+}
+
+/* New Search Button */
+.new-search-button {
+  background: #f5f5f5;
+  color: #2e7d32;
+  border: 2px solid #4caf50;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.new-search-button:hover {
+  background: #4caf50;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .guide-container {
+    padding: 15px;
+  }
+  
+  .guide-form {
+    padding: 20px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .analysis-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .guide-container h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .guidance-results h2 {
+    font-size: 1.1rem;
+    padding: 12px 15px;
+  }
+  
+  .instructions-section,
+  .alternatives-section,
+  .tips-section,
+  .impact-section,
+  .warnings-section,
+  .analysis-section {
+    padding: 15px;
+  }
+}
