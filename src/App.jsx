@@ -1,29 +1,79 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Home from './pages/Home'
-import Resources from './pages/Resources' 
-import Guide from './pages/Guide'
-import { useState } from 'react'
+import React from "react";
+import EzRecycleHome from "./EzRecycleHome";
+import { Leaf } from "lucide-react";
 
-function App() {
-  
+const navLinks = [
+  { name: "Home", href: "#" },
+  { name: "Quiz & Planner", href: "#quiz" },
+  { name: "Resources", href: "#resources" },
+];
+
+function Header() {
   return (
-    <Router> 
-      <div className="App">
-        <div className="header">
-          <Link to="/"><button className="headerBtn"> Home </button></Link>
-          <Link to="/resources"><button className="headerBtn"> Resources </button></Link>
-          <Link to="/guide"><button className="headerBtn"> Guide </button></Link>
-        </div>
-        <h1 className="title">EzRecycle</h1>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/resources" element={<Resources/>} />
-          <Route path="/guide" element={<Guide/>} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
-        </Routes>
+    <header className="w-full bg-white/70 backdrop-blur sticky top-0 shadow z-50">
+      <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
+        <h1 className="text-2xl font-extrabold flex items-center gap-2">
+          <Leaf className="w-6 h-6 text-green-600" />
+          EzRecycle
+        </h1>
+        <nav className="hidden md:flex gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm font-medium hover:text-green-700 transition-colors duration-200"
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
       </div>
-    </Router>
+    </header>
   );
 }
 
-export default App
+function Footer() {
+  return (
+    <footer className="bg-gray-800 text-gray-300">
+      <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-xl font-semibold mb-3 flex items-center gap-2">
+            <Leaf className="w-5 h-5 text-green-500" />
+            EzRecycle
+          </h4>
+          <p>Making recycling effortless, one item at a time.</p>
+        </div>
+        <div>
+          <h5 className="font-semibold mb-2">Navigate</h5>
+          <ul className="space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="text-center py-4 text-sm bg-gray-900">
+        © {new Date().getFullYear()} EzRecycle. All rights reserved.
+      </div>
+    </footer>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-green-100">
+      <Header />
+      <main className="flex-grow">
+        <EzRecycleHome />
+      </main>
+      <Footer />
+    </div>
+  );
+}
