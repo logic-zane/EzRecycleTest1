@@ -1,11 +1,13 @@
-import React from "react";
-import EzRecycleHome from "./EzRecycleHome";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Resources from './pages/Resources' 
+import Guide from './pages/Guide'
 import { Leaf } from "lucide-react";
 
 const navLinks = [
-  { name: "Home", href: "#" },
-  { name: "Quiz & Planner", href: "#quiz" },
-  { name: "Resources", href: "#resources" },
+  { name: 'Home', href: '/' },
+  { name: 'Resources', href: '/resources' },
+  { name: 'Guide', href: '/guide' }
 ];
 
 function Header() {
@@ -18,13 +20,13 @@ function Header() {
         </h1>
         <nav className="hidden md:flex gap-8">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="text-sm font-medium hover:text-green-700 transition-colors duration-200"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>
@@ -48,12 +50,12 @@ function Footer() {
           <ul className="space-y-2">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className="hover:text-white transition-colors duration-200"
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -68,12 +70,19 @@ function Footer() {
 
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-green-100">
-      <Header />
-      <main className="flex-grow">
-        <EzRecycleHome />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-green-100">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/guide" element={<Guide />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }

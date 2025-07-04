@@ -1,37 +1,10 @@
-import React from "react";
 import { Leaf, Info, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
-
-const navLinks = [
-  { name: "Home", href: "#" },
-  { name: "Quiz & Planner", href: "#quiz" },
-  { name: "Resources", href: "#resources" },
-];
+import { Link } from "react-router-dom";
 
 export default function EzRecycleHome() {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-green-50 to-green-100 text-gray-800">
-      {/* Header */}
-      <header className="w-full bg-white/70 backdrop-blur sticky top-0 shadow z-50">
-        <div className="max-w-6xl mx-auto flex items-center justify-between p-4">
-          <h1 className="text-2xl font-extrabold flex items-center gap-2">
-            <Leaf className="w-6 h-6 text-green-600" />
-            EzRecycle
-          </h1>
-          <nav className="hidden md:flex gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium hover:text-green-700 transition-colors duration-200"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-          {/* TODO: Add mobile menu button */}
-        </div>
-      </header>
 
       {/* Main */}
       <main className="flex-grow">
@@ -49,12 +22,12 @@ export default function EzRecycleHome() {
             <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
               EzRecycle guides you with clear steps, local resources, and personalized planning to make eco‑friendly habits stick.
             </p>
-            <a
-              href="#quiz"
+            <Link
+              to="/guide"
               className="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-2xl shadow"
             >
               Take the Quick Quiz
-            </a>
+            </Link>
           </div>
         </section>
 
@@ -86,46 +59,16 @@ export default function EzRecycleHome() {
             <p className="max-w-2xl mx-auto mb-8">
               Dive deeper with guides on local regulations, upcycling ideas, and downloadable sorting charts.
             </p>
-            <a
-              href="#resources"
+            <Link
+              to="/resources"
               className="inline-block bg-green-50 hover:bg-green-100 text-green-700 font-semibold py-2 px-4 rounded-2xl border border-green-600"
             >
               Explore Resources
-            </a>
+            </Link>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-gray-300">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-6">
-          <div>
-            <h4 className="text-xl font-semibold mb-3 flex items-center gap-2">
-              <Leaf className="w-5 h-5 text-green-500" />
-              EzRecycle
-            </h4>
-            <p>Making recycling effortless, one item at a time.</p>
-          </div>
-          <div>
-            <h5 className="font-semibold mb-2">Navigate</h5>
-            <ul className="space-y-2">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="text-center py-4 text-sm bg-gray-900">
-          © {new Date().getFullYear()} EzRecycle. All rights reserved.
-        </div>
-      </footer>
     </div>
   );
 }
