@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import GeminiRecyclingService from '../components/GeminiRecyclingService';
-import './Guide.css';
 
 function Guide() {
     const [formData, setFormData] = useState({
@@ -127,363 +126,422 @@ function Guide() {
     };
 
     return (
-        <div className="guide-container">
-            <h1>Item Recycling Guide</h1>
-            
-            {currentStep > 1 && (
-                <button 
-                    onClick={resetForm}
-                    className="new-search-button"
-                >
-                    ← Retry
-                </button>
-            )}
-            {!recyclingGuidance ? (
-                <form onSubmit={handleSubmit} className="guide-form">
-                    <div className="progress-bar">
-                        <div className="progress" style={{ width: `${(currentStep / 4) * 100}%` }}></div>
+        <div className="bg-[#fffef9] min-h-screen py-10 px-6">
+            <div className="max-w-4xl mx-auto">
+                <h1 className="text-5xl font-extrabold text-green-700 mb-4 text-center">
+                    📋 Item Recycling Guide
+                </h1>
+                <p className="text-gray-700 text-lg text-center mb-10">
+                    Get personalized recycling guidance for any item!
+                </p>
+                
+                {currentStep > 1 && (
+                    <div className="text-center mb-6">
+                        <button 
+                            onClick={resetForm}
+                            className="bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-2 px-4 rounded-lg border border-green-600 transition-colors"
+                        >
+                            ← Start Over
+                        </button>
                     </div>
-                    
-                    {/* Step 1: Basic Item Information */}
-                    {currentStep == 1 && (
-                        <div className="form-step">
-                            <h2>Step 1: Basic Information</h2>
-                            
-                            <div className="input-group">
-                                <label htmlFor="item-name">
-                                    Item name/description *
-                                </label>
-                                <input
-                                    id="item-name"
-                                    type="text"
-                                    value={formData.itemName}
-                                    onChange={(e) => handleInputChange('itemName', e.target.value)}
-                                    placeholder="e.g., water bottle, smartphone, pizza box, etc."
-                                    className="item-input"
-                                    disabled={isLoading}
-                                />
+                )}
+
+                {!recyclingGuidance ? (
+                    <div className="bg-white rounded-lg shadow-lg p-8">
+                        <form onSubmit={handleSubmit}>
+                            {/* Progress Bar */}
+                            <div className="mb-8">
+                                <div className="flex justify-between text-sm text-gray-600 mb-2">
+                                    <span>Step {currentStep} of 4</span>
+                                    <span>{Math.round((currentStep / 4) * 100)}% Complete</span>
+                                </div>
+                                <div className="w-full bg-gray-200 rounded-full h-2">
+                                    <div 
+                                        className="bg-green-600 h-2 rounded-full transition-all duration-300" 
+                                        style={{ width: `${(currentStep / 4) * 100}%` }}
+                                    ></div>
+                                </div>
                             </div>
-
-                            {formData.itemName && (
-                                <button 
-                                    type="button"
-                                    onClick={() => setCurrentStep(2)}
-                                    className="next-button"
-                                >
-                                    Next: Materials
-                                </button>
-                            )}
-                        </div>
-                    )}
-
-                    {/* Step 2: Materials & Markings */}
-                    {currentStep == 2 && (
-                        <div className="form-step">
-                            <h2>Step 2: Materials & Markings *</h2>
-                            <p className="step-description">Select all that apply:</p>
                             
-                            <div className="checkbox-grid">
-                                {materialOptions.map(material => (
-                                    <label key={material} className="checkbox-item">
+                            {/* Step 1: Basic Item Information */}
+                            {currentStep === 1 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-green-700 mb-6">Step 1: Basic Information</h2>
+                                    
+                                    <div className="mb-6">
+                                        <label htmlFor="item-name" className="block text-lg font-semibold text-gray-700 mb-2">
+                                            Item name/description *
+                                        </label>
                                         <input
-                                            type="checkbox"
-                                            checked={formData.materials.includes(material)}
-                                            onChange={() => handleMaterialChange(material)}
+                                            id="item-name"
+                                            type="text"
+                                            value={formData.itemName}
+                                            onChange={(e) => handleInputChange('itemName', e.target.value)}
+                                            placeholder="e.g., water bottle, smartphone, pizza box, etc."
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                                             disabled={isLoading}
                                         />
-                                        <span className="checkbox-label">{material}</span>
-                                    </label>
-                                ))}
-                            </div>
+                                    </div>
 
-                            {formData.materials.includes('Plastic') && (
-                                <div className="input-group">
-                                    <label htmlFor="plastic-type">
-                                        Plastic recycling code (if visible on item)
-                                    </label>
-                                    <select
-                                        id="plastic-type"
-                                        value={formData.plasticType}
-                                        onChange={(e) => handleInputChange('plasticType', e.target.value)}
-                                        className="select-input"
-                                        disabled={isLoading}
-                                    >
-                                        <option value="">Not sure/No code visible</option>
-                                        <option value="Mobius Loop">♲ Mobius Loop (generic recycling symbol)</option>
-                                        <option value="#1 PET">♳ #1 PET (water bottles)</option>
-                                        <option value="#2 HDPE">♴ #2 HDPE (milk jugs)</option>
-                                        <option value="#3 PVC">♵ #3 PVC (pipes)</option>
-                                        <option value="#4 LDPE">♶ #4 LDPE (bags)</option>
-                                        <option value="#5 PP">♷ #5 PP (yogurt containers)</option>
-                                        <option value="#6 PS">♸ #6 PS (styrofoam)</option>
-                                        <option value="#7 Other">♹ #7 Other (mixed plastics)</option>
-                                    </select>
+                                    {formData.itemName && (
+                                        <div className="text-center">
+                                            <button 
+                                                type="button"
+                                                onClick={() => setCurrentStep(2)}
+                                                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition-colors"
+                                            >
+                                                Next: Materials →
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                            {(formData.materials.includes('Metal (Other)') || formData.materials.includes('Other')) && (
-                                <div className="input-group">
-                                    <label htmlFor="materials-other">
-                                        Specifiy other materials (if applicable)
-                                    </label>
-                                    <input
-                                        id="materials-other"
-                                        type="text"
-                                        value={formData.materialsOther}
-                                        onChange={(e) => handleInputChange('materialsOther', e.target.value)}
-                                        placeholder="e.g., steel, mixed metal, etc."
-                                        className="item-input"
-                                        disabled={isLoading}
-                                    />
+
+                            {/* Step 2: Materials & Markings */}
+                            {currentStep === 2 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-green-700 mb-6">Step 2: Materials & Markings *</h2>
+                                    <p className="text-gray-600 mb-6">Select all that apply:</p>
+                                    
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                                        {materialOptions.map(material => (
+                                            <label key={material} className="flex items-center space-x-2 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={formData.materials.includes(material)}
+                                                    onChange={() => handleMaterialChange(material)}
+                                                    disabled={isLoading}
+                                                    className="w-4 h-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                                                />
+                                                <span className="text-sm font-medium text-gray-700">{material}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+
+                                    {formData.materials.includes('Plastic') && (
+                                        <div className="mb-6">
+                                            <label htmlFor="plastic-type" className="block text-lg font-semibold text-gray-700 mb-2">
+                                                Plastic recycling code (if visible on item)
+                                            </label>
+                                            <select
+                                                id="plastic-type"
+                                                value={formData.plasticType}
+                                                onChange={(e) => handleInputChange('plasticType', e.target.value)}
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            >
+                                                <option value="">Not sure/No code visible</option>
+                                                <option value="Mobius Loop">♲ Mobius Loop (generic recycling symbol)</option>
+                                                <option value="#1 PET">♳ #1 PET (water bottles)</option>
+                                                <option value="#2 HDPE">♴ #2 HDPE (milk jugs)</option>
+                                                <option value="#3 PVC">♵ #3 PVC (pipes)</option>
+                                                <option value="#4 LDPE">♶ #4 LDPE (bags)</option>
+                                                <option value="#5 PP">♷ #5 PP (yogurt containers)</option>
+                                                <option value="#6 PS">♸ #6 PS (styrofoam)</option>
+                                                <option value="#7 Other">♹ #7 Other (mixed plastics)</option>
+                                            </select>
+                                        </div>
+                                    )}
+
+                                    {(formData.materials.includes('Metal (Other)') || formData.materials.includes('Other')) && (
+                                        <div className="mb-6">
+                                            <label htmlFor="materials-other" className="block text-lg font-semibold text-gray-700 mb-2">
+                                                Specify other materials (if applicable)
+                                            </label>
+                                            <input
+                                                id="materials-other"
+                                                type="text"
+                                                value={formData.materialsOther}
+                                                onChange={(e) => handleInputChange('materialsOther', e.target.value)}
+                                                placeholder="e.g., steel, mixed metal, etc."
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            />
+                                        </div>
+                                    )}
+
+                                    <div className="flex justify-between">
+                                        <button 
+                                            type="button"
+                                            onClick={() => setCurrentStep(1)}
+                                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors"
+                                        >
+                                            ← Back
+                                        </button>
+                                        {formData.materials.length > 0 && (
+                                            <button 
+                                                type="button"
+                                                onClick={() => setCurrentStep(3)}
+                                                className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition-colors"
+                                            >
+                                                Next: Details →
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             )}
-                            <div className="button-group">
-                                <button 
-                                    type="button"
-                                    onClick={() => setCurrentStep(1)}
-                                    className="back-button"
-                                >
-                                    Back
-                                </button>
-                                {formData.materials.length > 0 && (
-                                    <button 
-                                        type="button"
-                                        onClick={() => setCurrentStep(3)}
-                                        className="next-button"
-                                    >
-                                        Next: Details
-                                    </button>
-                                )}
-                            </div>
-                        </div>
-                    )}
 
-                    {/* Step 3: Physical Details */}
-                    {currentStep == 3 && (
-                        <div className="form-step">
-                            <h2>Step 3: Physical Details</h2>
-                            
-                            <div className="input-group">
-                                <label htmlFor="size">Size category</label>
-                                <select
-                                    id="size"
-                                    value={formData.size}
-                                    onChange={(e) => handleInputChange('size', e.target.value)}
-                                    className="select-input"
-                                    disabled={isLoading}
-                                >
-                                    <option value="">Select size...</option>
-                                    {sizeOptions.map(size => (
-                                        <option key={size} value={size}>{size}</option>
-                                    ))}
-                                </select>
-                            </div>
+                            {/* Step 3: Physical Details */}
+                            {currentStep === 3 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-green-700 mb-6">Step 3: Physical Details</h2>
+                                    
+                                    <div className="space-y-6">
+                                        <div>
+                                            <label htmlFor="size" className="block text-lg font-semibold text-gray-700 mb-2">Size category</label>
+                                            <select
+                                                id="size"
+                                                value={formData.size}
+                                                onChange={(e) => handleInputChange('size', e.target.value)}
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            >
+                                                <option value="">Select size...</option>
+                                                {sizeOptions.map(size => (
+                                                    <option key={size} value={size}>{size}</option>
+                                                ))}
+                                            </select>
+                                        </div>
 
-                            <div className="input-group">
-                                <label htmlFor="condition">Current condition</label>
-                                <select
-                                    id="condition"
-                                    value={formData.condition}
-                                    onChange={(e) => handleInputChange('condition', e.target.value)}
-                                    className="select-input"
-                                    disabled={isLoading}
-                                >
-                                    <option value="">Select condition...</option>
-                                    {conditionOptions.map(condition => (
-                                        <option key={condition} value={condition}>{condition}</option>
-                                    ))}
-                                </select>
-                            </div>
+                                        <div>
+                                            <label htmlFor="condition" className="block text-lg font-semibold text-gray-700 mb-2">Current condition</label>
+                                            <select
+                                                id="condition"
+                                                value={formData.condition}
+                                                onChange={(e) => handleInputChange('condition', e.target.value)}
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            >
+                                                <option value="">Select condition...</option>
+                                                {conditionOptions.map(condition => (
+                                                    <option key={condition} value={condition}>{condition}</option>
+                                                ))}
+                                            </select>
+                                        </div>
 
-                            <div className="input-group">
-                                <label htmlFor="quantity">How many items?</label>
-                                <input
-                                    id="quantity"
-                                    type="text"
-                                    value={formData.quantity}
-                                    onChange={(e) => handleInputChange('quantity', e.target.value)}
-                                    placeholder="e.g., 1, 5, a bag full, etc."
-                                    className="item-input"
-                                    disabled={isLoading}
-                                />
-                            </div>
+                                        <div>
+                                            <label htmlFor="quantity" className="block text-lg font-semibold text-gray-700 mb-2">How many items?</label>
+                                            <input
+                                                id="quantity"
+                                                type="text"
+                                                value={formData.quantity}
+                                                onChange={(e) => handleInputChange('quantity', e.target.value)}
+                                                placeholder="e.g., 1, 5, a bag full, etc."
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            />
+                                        </div>
+                                    </div>
 
-                            <div className="button-group">
-                                <button 
-                                    type="button"
-                                    onClick={() => setCurrentStep(2)}
-                                    className="back-button"
-                                >
-                                    Back
-                                </button>
-                                <button 
-                                    type="button"
-                                    onClick={() => setCurrentStep(4)}
-                                    className="next-button"
-                                >
-                                    Next: Final Details
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Step 4: Additional Information */}
-                    {currentStep == 4 && (
-                        <div className="form-step">
-                            <h2>Step 4: Additional Information</h2>
-                            
-                            <div className="input-group">
-                                <label htmlFor="special-features">
-                                    Any special features or concerns?
-                                </label>
-                                <textarea
-                                    id="special-features"
-                                    value={formData.specialFeatures}
-                                    onChange={(e) => handleInputChange('specialFeatures', e.target.value)}
-                                    placeholder="e.g., contains batteries, has food residue, multiple parts, hazardous materials, etc."
-                                    className="textarea-input"
-                                    rows="3"
-                                    disabled={isLoading}
-                                />
-                            </div>
-
-                            <div className="input-group">
-                                <label htmlFor="user-location">
-                                    Your location (for local guidance)
-                                </label>
-                                <input
-                                    id="user-location"
-                                    type="text"
-                                    value={formData.userLocation}
-                                    onChange={(e) => handleInputChange('userLocation', e.target.value)}
-                                    placeholder="e.g., New York, NY or ZIP code"
-                                    className="location-input"
-                                    disabled={isLoading}
-                                />
-                            </div>
-
-                            {error && <div className="error-message">{error}</div>}
-
-                            <div className="button-group">
-                                <button 
-                                    type="button"
-                                    onClick={() => setCurrentStep(3)}
-                                    className="back-button"
-                                >
-                                    Back
-                                </button>
-                                <button 
-                                    type="submit" 
-                                    disabled={isLoading}
-                                    className="primary-button"
-                                >
-                                    {isLoading ? 'Analyzing...' : 'Get Recycling Guide'}
-                                </button>
-                            </div>
-                        </div>
-                    )}
-                </form>
-            ) : (
-                <>
-                    <div className="guidance-results">
-                        <div className="analysis-section">
-                            <h2>🔍 Item Analysis</h2>
-                            <div className="analysis-grid">
-                                <div><strong>Item:</strong> {recyclingGuidance.analysis.item}</div>
-                                <div><strong>Material:</strong> {recyclingGuidance.analysis.material}</div>
-                                <div><strong>Recyclability:</strong> 
-                                    <span className={`recyclability ${recyclingGuidance.analysis.recyclability.toLowerCase()}`}>
-                                        {recyclingGuidance.analysis.recyclability}
-                                    </span>
+                                    <div className="flex justify-between mt-8">
+                                        <button 
+                                            type="button"
+                                            onClick={() => setCurrentStep(2)}
+                                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors"
+                                        >
+                                            ← Back
+                                        </button>
+                                        <button 
+                                            type="button"
+                                            onClick={() => setCurrentStep(4)}
+                                            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition-colors"
+                                        >
+                                            Next: Final Details →
+                                        </button>
+                                    </div>
                                 </div>
-                                {recyclingGuidance.analysis.recyclingCode && (
-                                    <div><strong>Recycling Code:</strong> {recyclingGuidance.analysis.recyclingCode}</div>
-                                )}
+                            )}
+
+                            {/* Step 4: Additional Information */}
+                            {currentStep === 4 && (
+                                <div>
+                                    <h2 className="text-2xl font-bold text-green-700 mb-6">Step 4: Additional Information</h2>
+                                    
+                                    <div className="space-y-6">
+                                        <div>
+                                            <label htmlFor="special-features" className="block text-lg font-semibold text-gray-700 mb-2">
+                                                Any special features or concerns?
+                                            </label>
+                                            <textarea
+                                                id="special-features"
+                                                value={formData.specialFeatures}
+                                                onChange={(e) => handleInputChange('specialFeatures', e.target.value)}
+                                                placeholder="e.g., contains batteries, has food residue, multiple parts, hazardous materials, etc."
+                                                rows="3"
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label htmlFor="user-location" className="block text-lg font-semibold text-gray-700 mb-2">
+                                                Your location (for local guidance)
+                                            </label>
+                                            <input
+                                                id="user-location"
+                                                type="text"
+                                                value={formData.userLocation}
+                                                onChange={(e) => handleInputChange('userLocation', e.target.value)}
+                                                placeholder="e.g., New York, NY or ZIP code"
+                                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                                                disabled={isLoading}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {error && (
+                                        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                                            <p className="text-red-700">{error}</p>
+                                        </div>
+                                    )}
+
+                                    <div className="flex justify-between mt-8">
+                                        <button 
+                                            type="button"
+                                            onClick={() => setCurrentStep(3)}
+                                            className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg transition-colors"
+                                        >
+                                            ← Back
+                                        </button>
+                                        <button 
+                                            type="submit" 
+                                            disabled={isLoading}
+                                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {isLoading ? '🔍 Analyzing...' : '♻️ Get Recycling Guide'}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </form>
+                    </div>
+                ) : (
+                    <div className="space-y-6">
+                        {/* Analysis Section */}
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <div className="bg-green-700 px-6 py-4">
+                                <h2 className="text-white font-semibold text-xl">🔍 Item Analysis</h2>
+                            </div>
+                            <div className="bg-white p-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div><strong>Item:</strong> {recyclingGuidance.analysis.item}</div>
+                                    <div><strong>Material:</strong> {recyclingGuidance.analysis.material}</div>
+                                    <div>
+                                        <strong>Recyclability:</strong> 
+                                        <span className={`ml-2 px-3 py-1 rounded-full text-sm font-semibold ${
+                                            recyclingGuidance.analysis.recyclability.toLowerCase().includes('yes') 
+                                                ? 'bg-green-100 text-green-800'
+                                                : recyclingGuidance.analysis.recyclability.toLowerCase().includes('no')
+                                                ? 'bg-red-100 text-red-800'
+                                                : 'bg-yellow-100 text-yellow-800'
+                                        }`}>
+                                            {recyclingGuidance.analysis.recyclability}
+                                        </span>
+                                    </div>
+                                    {recyclingGuidance.analysis.recyclingCode && (
+                                        <div><strong>Recycling Code:</strong> {recyclingGuidance.analysis.recyclingCode}</div>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
-                        <div className="instructions-section">
-                            <h2>♻️ Recycling Instructions</h2>
-                            <div className="instruction-item">
-                                <strong>Method:</strong> {recyclingGuidance.instructions.method}
+                        {/* Instructions Section */}
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <div className="bg-green-700 px-6 py-4">
+                                <h2 className="text-white font-semibold text-xl">♻️ Recycling Instructions</h2>
                             </div>
-                            <div className="instruction-item">
-                                <strong>Preparation:</strong> {recyclingGuidance.instructions.preparation}
-                            </div>
-                            <div className="instruction-item">
-                                <strong>Where to take it:</strong> {recyclingGuidance.instructions.location}
+                            <div className="bg-white p-6 space-y-4">
+                                <div><strong>Method:</strong> {recyclingGuidance.instructions.method}</div>
+                                <div><strong>Preparation:</strong> {recyclingGuidance.instructions.preparation}</div>
+                                <div><strong>Where to take it:</strong> {recyclingGuidance.instructions.location}</div>
                             </div>
                         </div>
 
+                        {/* Warnings Section */}
                         {recyclingGuidance.warnings && recyclingGuidance.warnings.length > 0 && (
-                            <div className="warnings-section">
-                                <h2>⚠️ Important Warnings</h2>
-                                <ul>
-                                    {recyclingGuidance.warnings.map((warning, index) => (
-                                        <li key={index}>{warning}</li>
-                                    ))}
-                                </ul>
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <div className="bg-yellow-600 px-6 py-4">
+                                    <h2 className="text-white font-semibold text-xl">⚠️ Important Warnings</h2>
+                                </div>
+                                <div className="bg-yellow-100 p-6">
+                                    <ul className="list-disc list-inside space-y-2">
+                                        {recyclingGuidance.warnings.map((warning, index) => (
+                                            <li key={index}>{warning}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         )}
 
-                        <div className="impact-section">
-                            <h2>🌱 Environmental Impact</h2>
-                            <p>{recyclingGuidance.environmentalImpact}</p>
+                        {/* Environmental Impact */}
+                        <div className="rounded-lg overflow-hidden shadow-lg">
+                            <div className="bg-green-700 px-6 py-4">
+                                <h2 className="text-white font-semibold text-xl">🌱 Environmental Impact</h2>
+                            </div>
+                            <div className="bg-green-100 p-6">
+                                <p>{recyclingGuidance.environmentalImpact}</p>
+                            </div>
                         </div>
 
+                        {/* Alternatives Section */}
                         {recyclingGuidance.alternatives && (
-                            <div className="alternatives-section">
-                                <h2>🔄 Alternative Options</h2>
-                                
-                                {recyclingGuidance.alternatives.reuse && recyclingGuidance.alternatives.reuse.length > 0 && (
-                                    <div className="alternative-group">
-                                        <h3>Reuse Ideas:</h3>
-                                        <ul>
-                                            {recyclingGuidance.alternatives.reuse.map((idea, index) => (
-                                                <li key={index}>{idea}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <div className="bg-green-700 px-6 py-4">
+                                    <h2 className="text-white font-semibold text-xl">🔄 Alternative Options</h2>
+                                </div>
+                                <div className="bg-white p-6 space-y-6">
+                                    {recyclingGuidance.alternatives.reuse && recyclingGuidance.alternatives.reuse.length > 0 && (
+                                        <div>
+                                            <h3 className="font-bold text-lg text-green-700 mb-2">Reuse Ideas:</h3>
+                                            <ul className="list-disc list-inside space-y-1">
+                                                {recyclingGuidance.alternatives.reuse.map((idea, index) => (
+                                                    <li key={index}>{idea}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    
+                                    {recyclingGuidance.alternatives.donation && recyclingGuidance.alternatives.donation.length > 0 &&(
+                                        <div>
+                                            <h3 className="font-bold text-lg text-green-700 mb-2">Donation:</h3>
+                                            <ul className="list-disc list-inside space-y-1">
+                                                <li>{recyclingGuidance.alternatives.donation}</li>
+                                            </ul>
+                                        </div>
+                                    )}
 
-                                {recyclingGuidance.alternatives.donation && recyclingGuidance.alternatives.donation.length > 0 && (
-                                    <div className="alternative-group">
-                                        <h3>Donation:</h3>
-                                        <ul>
-                                            <li>{recyclingGuidance.alternatives.donation}</li>
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {recyclingGuidance.alternatives.upcycling && recyclingGuidance.alternatives.upcycling.length > 0 && (
-                                    <div className="alternative-group">
-                                        <h3>Upcycling Projects:</h3>
-                                        <ul>
-                                            {recyclingGuidance.alternatives.upcycling.map((project, index) => (
-                                                <li key={index}>{project}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
+                                    {recyclingGuidance.alternatives.upcycling && recyclingGuidance.alternatives.upcycling.length > 0 && (
+                                        <div>
+                                            <h3 className="font-bold text-lg text-green-700 mb-2">Upcycling Projects:</h3>
+                                            <ul className="list-disc list-inside space-y-1">
+                                                {recyclingGuidance.alternatives.upcycling.map((project, index) => (
+                                                    <li key={index}>{project}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         )}
 
+                        {/* Tips Section */}
                         {recyclingGuidance.tips && recyclingGuidance.tips.length > 0 && (
-                            <div className="tips-section">
-                                <h2>💡 Additional Tips</h2>
-                                <ul>
-                                    {recyclingGuidance.tips.map((tip, index) => (
-                                        <li key={index}>{tip}</li>
-                                    ))}
-                                </ul>
+                            <div className="rounded-lg overflow-hidden shadow-lg">
+                                <div className="bg-blue-500 px-6 py-4">
+                                    <h2 className="text-white font-semibold text-xl">💡 Additional Tips</h2>
+                                </div>
+                                <div className="bg-blue-100 p-6">
+                                    <ul className="list-disc list-inside space-y-2">
+                                        {recyclingGuidance.tips.map((tip, index) => (
+                                            <li key={index}>{tip}</li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         )}
                     </div>
-                </>
-
-            )
-            
-            }
-            
+                )}
+            </div>
         </div>
     );
 }
