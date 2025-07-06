@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import exampleImg from "../assets/slideshow_pics/react.svg";
 import cardboardImg from "../assets/slideshow_pics/cardboard.jpg";
 import newspaperImg from "../assets/slideshow_pics/newspaper.jpg";
 import paperBagsImg from "../assets/slideshow_pics/paper-bags.jpg";
@@ -10,13 +9,20 @@ import canImg from "../assets/slideshow_pics/can.jpg";
 import cans2Img from "../assets/slideshow_pics/cans2.webp";
 import glassImg from "../assets/slideshow_pics/glass.png";
 import glass2Img from "../assets/slideshow_pics/glass2.webp";
+import notRecycle1 from "../assets/slideshow_pics/do-not-recycle.jpg";
+import notRecycle2 from "../assets/slideshow_pics/do-not-recycle2.jpg";
+import notRecycle3 from "../assets/slideshow_pics/do-not-recycle3.jpg";
+import notThrow1 from "../assets/slideshow_pics/do-not-throw-out.webp";
+import notThrow2 from "../assets/slideshow_pics/do-not-throw-out2.jpg";
+import notThrow3 from "../assets/slideshow_pics/do-not-throwout3.jpg";
 
 function Resources() {
   const paperImages = [cardboardImg, newspaperImg, paperBagsImg];
   const plasticImages = [plasticBottle, plasticContainers, milkJugs];
   const metalImages = [canImg, cans2Img];
   const glassImages = [glassImg, glass2Img];
-  const placeholderImages = [exampleImg, exampleImg, exampleImg];
+  const noRecycleImages = [notRecycle1, notRecycle2, notRecycle3];
+  const specialRecycleImages = [notThrow1, notThrow2, notThrow3];
 
   const [slideIndices, setSlideIndices] = useState({});
 
@@ -62,13 +68,13 @@ function Resources() {
     {
       title: "🚫 Do NOT Recycle",
       desc: "Plastic bags, styrofoam, greasy paper, disposable cups.",
-      images: placeholderImages,
+      images: noRecycleImages,
       key: "noRecycle",
     },
     {
       title: "⚡ Special Recycling",
       desc: "Batteries, paint, electronics, light bulbs, medical waste.",
-      images: placeholderImages,
+      images: specialRecycleImages,
       key: "special",
     },
   ];
