@@ -3,249 +3,216 @@ import exampleImg from "../assets/slideshow_pics/react.svg";
 import cardboardImg from "../assets/slideshow_pics/cardboard.jpg";
 import newspaperImg from "../assets/slideshow_pics/newspaper.jpg";
 import paperBagsImg from "../assets/slideshow_pics/paper-bags.jpg";
+import plasticBottle from "../assets/slideshow_pics/plastic-bottle.png";
+import plasticContainers from "../assets/slideshow_pics/plastic-containers.jpg";
+import milkJugs from "../assets/slideshow_pics/milk-jugs.jpg";
+import canImg from "../assets/slideshow_pics/can.jpg";
+import cans2Img from "../assets/slideshow_pics/cans2.webp";
+import glassImg from "../assets/slideshow_pics/glass.png";
+import glass2Img from "../assets/slideshow_pics/glass2.webp";
 
 function Resources() {
-  const [slideIndex, setSlideIndex] = useState(0);
   const paperImages = [cardboardImg, newspaperImg, paperBagsImg];
+  const plasticImages = [plasticBottle, plasticContainers, milkJugs];
+  const metalImages = [canImg, cans2Img];
+  const glassImages = [glassImg, glass2Img];
+  const placeholderImages = [exampleImg, exampleImg, exampleImg];
 
-  const handlePrev = () => {
-    setSlideIndex((prev) => (prev === 0 ? paperImages.length - 1 : prev - 1));
+  const [slideIndices, setSlideIndices] = useState({});
+
+  const handlePrev = (key, length) => {
+    setSlideIndices((prev) => ({
+      ...prev,
+      [key]: prev[key] > 0 ? prev[key] - 1 : length - 1,
+    }));
   };
 
-  const handleNext = () => {
-    setSlideIndex((prev) => (prev === paperImages.length - 1 ? 0 : prev + 1));
+  const handleNext = (key, length) => {
+    setSlideIndices((prev) => ({
+      ...prev,
+      [key]: prev[key] < length - 1 ? prev[key] + 1 : 0,
+    }));
   };
 
   const cards = [
     {
       title: "📦 Paper/Cardboard",
       desc: "Newspapers, magazines, office paper, cardboard, and paper bags.",
-      isSlider: true,
+      images: paperImages,
+      key: "paper",
     },
     {
       title: "🥤 Plastics",
       desc: "Plastic bottles and jugs, some food containers.",
+      images: plasticImages,
+      key: "plastic",
     },
     {
       title: "🔩 Metals",
       desc: "Aluminum cans, steel cans, copper pipes, brass fixtures.",
+      images: metalImages,
+      key: "metals",
     },
     {
       title: "🍾 Glass",
       desc: "Glass bottles and jars.",
+      images: glassImages,
+      key: "glass",
     },
     {
       title: "🚫 Do NOT Recycle",
       desc: "Plastic bags, styrofoam, greasy paper, disposable cups.",
+      images: placeholderImages,
+      key: "noRecycle",
     },
     {
       title: "⚡ Special Recycling",
       desc: "Batteries, paint, electronics, light bulbs, medical waste.",
+      images: placeholderImages,
+      key: "special",
     },
   ];
 
   return (
-    <div className="bg-[#fffef9] min-h-screen py-10 px-6">
+    <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-14 px-6 text-gray-800">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-5xl font-extrabold text-green-700 mb-4 text-center">
-          🌱 Resources
+          🌱 Recycling Categories
         </h1>
-        <p className="text-gray-700 text-lg text-center mb-10">
-          Learn how to recycle responsibly and get involved in local efforts!
+        <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
+          Get to know what materials are recyclable and how to sort them correctly.
         </p>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {cards.map((item, index) => (
-            <div key={index} className="rounded overflow-hidden shadow-lg">
-              {/* Green Top Bar */}
-              <div className="bg-green-700 px-4 py-3">
-                <h2 className="text-white font-semibold text-lg">{item.title}</h2>
-              </div>
-
-              {/* Card Body */}
-              <div className="bg-[#ffffff] text-black p-5">
-                {item.isSlider ? (
-                  <div className="relative w-full h-40 mb-3">
-                    <img
-                      src={paperImages[slideIndex]}
-                      alt="Paper recycling slide"
-                      className="w-full h-40 object-contain rounded"
-                    />
-                    <button
-                      onClick={handlePrev}
-                      className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-green-700 px-2 py-1 rounded-l shadow"
-                    >
-                      ‹
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-green-700 px-2 py-1 rounded-r shadow"
-                    >
-                      ›
-                    </button>
-                  </div>
-                ) : (
+        {/* Resource Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+          {cards.map((item, index) => {
+            const [firstWord, ...rest] = item.title.split(" ");
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow p-6 flex flex-col items-center text-center"
+              >
+                <div className="w-full h-40 relative mb-4">
                   <img
-                    src={exampleImg}
+                    src={item.images[slideIndices[item.key] || 0]}
                     alt={item.title}
-                    className="w-full h-40 object-contain mb-3"
+                    className="w-full h-full object-contain rounded"
                   />
-                )}
-                <p>{item.desc}</p>
+                  <button
+                    onClick={() => handlePrev(item.key, item.images.length)}
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-green-700 px-2 py-1 rounded-l shadow"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    onClick={() => handleNext(item.key, item.images.length)}
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-green-700 px-2 py-1 rounded-r shadow"
+                  >
+                    ›
+                  </button>
+                </div>
+                <h2 className="text-xl font-semibold mb-2">
+                  <span className="text-green-600">{firstWord}</span>{" "}
+                  {rest.join(" ")}
+                </h2>
+                <p className="text-sm">{item.desc}</p>
               </div>
+            );
+          })}
+        </div>
+
+        {/* Community + NYC Recycling Info */}
+        <div className="mt-24 space-y-16">
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🤝</span>
+              <h3 className="text-2xl font-bold text-green-700">Community Volunteering</h3>
             </div>
-          ))}
-        </div>
-
-        {/* Quiz CTA */}
-        <div className="text-center mt-12">
-          <p className="text-lg font-semibold">
-            ❓ Not sure what’s recyclable?{" "}
-            <a
-              href="/quiz"
-              className="text-green-700 underline hover:text-green-900"
-            >
-              Check out our guide!
-            </a>
-          </p>
-        </div>
-
-        {/* YouTube */}
-        <div className="mt-14 flex justify-center">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/eSeXWk3UTWQ?si=s_e4QHQL2aS5nIxf"
-            title="Recycling Tips Video"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="rounded shadow-xl"
-          />
-        </div>
-
-        {/* Community + NYC */}
-        <div className="mt-16 flex flex-col md:flex-row gap-10">
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold text-green-700 mb-2">
-              🤝 Community Volunteering
-            </h3>
-            <ul className="list-disc list-inside text-blue-700 space-y-2">
-              <li>
-                <a
-                  href="https://bigreuse.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Big Reuse Opportunities
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://earthmatter.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Earth Matter NYC
-                </a>
-              </li>
-            </ul>
+            <div className="flex flex-col sm:flex-row sm:gap-4 gap-2">
+              <a
+                href="https://bigreuse.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🌍 Big Reuse Opportunities
+              </a>
+              <a
+                href="https://earthmatter.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🌱 Earth Matter NYC
+              </a>
+            </div>
           </div>
 
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold text-green-700 mb-2">
-              🏙️ NYC Recycling Info
-            </h3>
-            <ul className="list-disc list-inside text-blue-700 space-y-2">
-              <li>
-                <a
-                  href="https://portal.311.nyc.gov/article/?kanumber=KA-02013"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  311 Recycling Guide
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://hudsonriverpark.org/recycling-101-in-nyc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Hudson River Park Recycling 101
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.nyc.gov/site/dsny/collection/residents/recycling.page"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  DSNY Recycling Page
-                </a>
-              </li>
-            </ul>
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🏩</span>
+              <h3 className="text-2xl font-bold text-green-700">NYC Recycling Info</h3>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:gap-4 gap-2">
+              <a
+                href="https://portal.311.nyc.gov/article/?kanumber=KA-02013"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                📘 311 Recycling Guide
+              </a>
+              <a
+                href="https://hudsonriverpark.org/recycling-101-in-nyc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🏖️ Hudson River Park Recycling 101
+              </a>
+              <a
+                href="https://www.nyc.gov/site/dsny/collection/residents/recycling.page"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🗑️ DSNY Recycling Page
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* National Resources */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-green-700 mb-4">
-            🇺🇸 Recycling Laws & Local Drop-off Points
-          </h3>
-          <p className="text-gray-700 mb-6">
-            Laws vary by city and state. Check these links for up-to-date guidelines:
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="rounded overflow-hidden shadow">
-              <div className="bg-green-700 px-4 py-3">
-                <h4 className="text-white font-semibold">U.S. EPA Recycling Guide</h4>
-              </div>
-              <div className="bg-[#ffffff] text-black p-5">
-                <a
-                  href="https://www.epa.gov/recycle"
-                  className="underline hover:text-gray-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  EPA.gov/recycle
-                </a>
-              </div>
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🇺🇸</span>
+              <h3 className="text-2xl font-bold text-green-700">National Recycling Resources</h3>
             </div>
-
-            <div className="rounded overflow-hidden shadow">
-              <div className="bg-green-700 px-4 py-3">
-                <h4 className="text-white font-semibold">Earth911 Search</h4>
-              </div>
-              <div className="bg-[#ffffff] text-black p-5">
-                <p>Find the nearest facility for almost anything:</p>
-                <a
-                  href="https://search.earth911.com"
-                  className="underline hover:text-gray-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  search.earth911.com
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded overflow-hidden shadow">
-              <div className="bg-green-700 px-4 py-3">
-                <h4 className="text-white font-semibold">Plastic Film Recycling</h4>
-              </div>
-              <div className="bg-[#ffffff] text-black p-5">
-                <a
-                  href="https://www.plasticfilmrecycling.org/recycling-bags-and-wraps/find-drop-off-location/"
-                  className="underline hover:text-gray-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Find drop-offs for grocery bags & wraps
-                </a>
-              </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[{
+                title: "♻️ EPA Recycling Guide",
+                link: "https://www.epa.gov/recycle",
+                desc: "Tips and rules from the U.S. Environmental Protection Agency."
+              }, {
+                title: "🔍 Earth911 Search",
+                link: "https://search.earth911.com",
+                desc: "Find local recycling drop-offs by material or ZIP code."
+              }, {
+                title: "🛙 Plastic Film Recycling",
+                link: "https://www.plasticfilmrecycling.org/recycling-bags-and-wraps/find-drop-off-location/",
+                desc: "Grocery bag, shrink wrap, and soft plastic recycling locations."
+              }].map((res, idx) => (
+                <div key={idx} className="border border-green-100 rounded-xl p-5 bg-green-50 hover:bg-green-100 transition">
+                  <h4 className="text-lg font-bold text-green-800 mb-1">{res.title}</h4>
+                  <p className="text-sm text-gray-700 mb-2">{res.desc}</p>
+                  <a
+                    href={res.link}
+                    className="text-green-700 underline hover:text-green-900 text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Link →
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -255,5 +222,3 @@ function Resources() {
 }
 
 export default Resources;
-
-
