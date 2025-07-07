@@ -126,12 +126,12 @@ function Guide() {
     };
 
     return (
-        <div className="bg-[#fffef9] min-h-screen py-10 px-6">
+        <div className="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-14 px-6 text-gray-800">
             <div className="max-w-4xl mx-auto">
                 <h1 className="text-5xl font-extrabold text-green-700 mb-4 text-center">
                     📋 Item Recycling Guide
                 </h1>
-                <p className="text-gray-700 text-lg text-center mb-10">
+                <p className="text-lg text-center mb-12 max-w-3xl mx-auto">
                     Get personalized recycling guidance for any item!
                 </p>
                 
@@ -139,7 +139,7 @@ function Guide() {
                     <div className="text-center mb-6">
                         <button 
                             onClick={resetForm}
-                            className="bg-green-100 hover:bg-green-200 text-green-700 font-semibold py-2 px-4 rounded-lg border border-green-600 transition-colors"
+                            className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
                         >
                             ← Start Over
                         </button>
@@ -147,7 +147,7 @@ function Guide() {
                 )}
 
                 {!recyclingGuidance ? (
-                    <div className="bg-white rounded-lg shadow-lg p-8">
+                    <div className="bg-white rounded-2xl shadow p-8">
                         <form onSubmit={handleSubmit}>
                             {/* Progress Bar */}
                             <div className="mb-8">
@@ -418,78 +418,91 @@ function Guide() {
                 ) : (
                     <div className="space-y-6">
                         {/* Analysis Section */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <div className="bg-green-700 px-6 py-4">
-                                <h2 className="text-white font-semibold text-xl">🔍 Item Analysis</h2>
+                        <div className="bg-white rounded-2xl shadow p-6">
+                            <div className="flex items-center mb-4">
+                                <span className="text-2xl mr-2">🔍</span>
+                                <h2 className="text-2xl font-bold text-green-700">Item Analysis</h2>
                             </div>
-                            <div className="bg-white p-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div><strong>Item:</strong> {recyclingGuidance.analysis.item}</div>
-                                    <div><strong>Material:</strong> {recyclingGuidance.analysis.material}</div>
-                                    <div>
-                                        <strong>Recyclability:</strong> 
-                                        <span className={`ml-2 px-3 py-1 rounded-full text-sm font-semibold ${
-                                            recyclingGuidance.analysis.recyclability.toLowerCase().includes('yes') 
-                                                ? 'bg-green-100 text-green-800'
-                                                : recyclingGuidance.analysis.recyclability.toLowerCase().includes('no')
-                                                ? 'bg-red-100 text-red-800'
-                                                : 'bg-yellow-100 text-yellow-800'
-                                        }`}>
-                                            {recyclingGuidance.analysis.recyclability}
-                                        </span>
-                                    </div>
-                                    {recyclingGuidance.analysis.recyclingCode && (
-                                        <div><strong>Recycling Code:</strong> {recyclingGuidance.analysis.recyclingCode}</div>
-                                    )}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div><strong>Item:</strong> {recyclingGuidance.analysis.item}</div>
+                                <div><strong>Material:</strong> {recyclingGuidance.analysis.material}</div>
+                                <div>
+                                    <strong>Recyclability:</strong> 
+                                    <span className={`ml-2 px-3 py-1 rounded-full text-sm font-semibold ${
+                                        recyclingGuidance.analysis.recyclability.toLowerCase().includes('yes') 
+                                            ? 'bg-green-100 text-green-800'
+                                            : recyclingGuidance.analysis.recyclability.toLowerCase().includes('no')
+                                            ? 'bg-red-100 text-red-800'
+                                            : 'bg-yellow-100 text-yellow-800'
+                                    }`}>
+                                        {recyclingGuidance.analysis.recyclability}
+                                    </span>
                                 </div>
+                                {recyclingGuidance.analysis.recyclingCode && (
+                                    <div><strong>Recycling Code:</strong> {recyclingGuidance.analysis.recyclingCode}</div>
+                                )}
                             </div>
                         </div>
 
                         {/* Instructions Section */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <div className="bg-green-700 px-6 py-4">
-                                <h2 className="text-white font-semibold text-xl">♻️ Recycling Instructions</h2>
+                        <div className="bg-white rounded-2xl shadow p-6">
+                            <div className="flex items-center mb-4">
+                                <span className="text-2xl mr-2">♻️</span>
+                                <h2 className="text-2xl font-bold text-green-700">Recycling Instructions</h2>
                             </div>
-                            <div className="bg-white p-6 space-y-4">
+                            <div className="space-y-4">
                                 <div><strong>Method:</strong> {recyclingGuidance.instructions.method}</div>
-                                <div><strong>Preparation:</strong> {recyclingGuidance.instructions.preparation}</div>
+                                <div>
+                                    <strong>Preparation Steps:</strong>
+                                    {Array.isArray(recyclingGuidance.instructions.preparation) ? (
+                                        <ol className="list-decimal list-inside space-y-2 mt-2 ml-4">
+                                            {recyclingGuidance.instructions.preparation.map((step, index) => (
+                                                <li key={index} className="text-gray-700">{step}</li>
+                                            ))}
+                                        </ol>
+                                    ) : (
+                                        <span className="ml-2">{recyclingGuidance.instructions.preparation}</span>
+                                    )}
+                                </div>
                                 <div><strong>Where to take it:</strong> {recyclingGuidance.instructions.location}</div>
+                                {recyclingGuidance.instructions.timing && (
+                                    <div><strong>Timing:</strong> {recyclingGuidance.instructions.timing}</div>
+                                )}
                             </div>
                         </div>
 
                         {/* Warnings Section */}
                         {recyclingGuidance.warnings && recyclingGuidance.warnings.length > 0 && (
-                            <div className="rounded-lg overflow-hidden shadow-lg">
-                                <div className="bg-yellow-600 px-6 py-4">
-                                    <h2 className="text-white font-semibold text-xl">⚠️ Important Warnings</h2>
+                            <div className="bg-yellow-50 rounded-2xl shadow p-6 border border-yellow-200">
+                                <div className="flex items-center mb-4">
+                                    <span className="text-2xl mr-2">⚠️</span>
+                                    <h2 className="text-2xl font-bold text-yellow-700">Important Warnings</h2>
                                 </div>
-                                <div className="bg-yellow-100 p-6">
-                                    <ul className="list-disc list-inside space-y-2">
-                                        {recyclingGuidance.warnings.map((warning, index) => (
-                                            <li key={index}>{warning}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                    {recyclingGuidance.warnings.map((warning, index) => (
+                                        <li key={index}>{warning}</li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
 
                         {/* Environmental Impact */}
-                        <div className="rounded-lg overflow-hidden shadow-lg">
-                            <div className="bg-green-700 px-6 py-4">
-                                <h2 className="text-white font-semibold text-xl">🌱 Environmental Impact</h2>
+                        <div className="bg-green-50 rounded-2xl shadow p-6 border border-green-200">
+                            <div className="flex items-center mb-4">
+                                <span className="text-2xl mr-2">🌱</span>
+                                <h2 className="text-2xl font-bold text-green-700">Environmental Impact</h2>
                             </div>
-                            <div className="bg-green-100 p-6">
-                                <p>{recyclingGuidance.environmentalImpact}</p>
-                            </div>
+                            <p className="text-gray-700">{recyclingGuidance.environmentalImpact}</p>
                         </div>
 
                         {/* Alternatives Section */}
                         {recyclingGuidance.alternatives && (
-                            <div className="rounded-lg overflow-hidden shadow-lg">
-                                <div className="bg-green-700 px-6 py-4">
-                                    <h2 className="text-white font-semibold text-xl">🔄 Alternative Options</h2>
+                            <div className="bg-white rounded-2xl shadow p-6">
+                                <div className="flex items-center mb-4">
+                                    <span className="text-2xl mr-2">🔄</span>
+                                    <h2 className="text-2xl font-bold text-green-700">Alternative Options</h2>
                                 </div>
-                                <div className="bg-white p-6 space-y-6">
+                                <div className="space-y-6">
                                     {recyclingGuidance.alternatives.reuse && recyclingGuidance.alternatives.reuse.length > 0 && (
                                         <div>
                                             <h3 className="font-bold text-lg text-green-700 mb-2">Reuse Ideas:</h3>
@@ -526,17 +539,32 @@ function Guide() {
 
                         {/* Tips Section */}
                         {recyclingGuidance.tips && recyclingGuidance.tips.length > 0 && (
-                            <div className="rounded-lg overflow-hidden shadow-lg">
-                                <div className="bg-blue-500 px-6 py-4">
-                                    <h2 className="text-white font-semibold text-xl">💡 Additional Tips</h2>
+                            <div className="bg-blue-50 rounded-2xl shadow p-6 border border-blue-200">
+                                <div className="flex items-center mb-4">
+                                    <span className="text-2xl mr-2">💡</span>
+                                    <h2 className="text-2xl font-bold text-blue-700">Additional Tips</h2>
                                 </div>
-                                <div className="bg-blue-100 p-6">
-                                    <ul className="list-disc list-inside space-y-2">
-                                        {recyclingGuidance.tips.map((tip, index) => (
-                                            <li key={index}>{tip}</li>
-                                        ))}
-                                    </ul>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                    {recyclingGuidance.tips.map((tip, index) => (
+                                        <li key={index}>{tip}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Related Items Section */}
+                        {recyclingGuidance.relatedItems && recyclingGuidance.relatedItems.length > 0 && (
+                            <div className="bg-purple-50 rounded-2xl shadow p-6 border border-purple-200">
+                                <div className="flex items-center mb-4">
+                                    <span className="text-2xl mr-2">🔗</span>
+                                    <h2 className="text-2xl font-bold text-purple-700">Related Items</h2>
                                 </div>
+                                <p className="text-gray-700 mb-3">Similar items that follow the same disposal process:</p>
+                                <ul className="list-disc list-inside space-y-2 text-gray-700">
+                                    {recyclingGuidance.relatedItems.map((item, index) => (
+                                        <li key={index}>{item}</li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
                     </div>

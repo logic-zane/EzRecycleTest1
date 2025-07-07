@@ -40,11 +40,13 @@ Based on this detailed information, please provide a response in the following J
     "material": "primary material type (be specific)",
     "recyclability": "Yes/No/Special handling required",
     "recyclingCode": "if applicable (e.g., #1-7 for plastics)",
-    "complexity": "Simple/Moderate/Complex (based on materials and disposal)"
   },
   "instructions": {
     "method": "Curbside/Drop-off/Special program/Retailer take-back/Not recyclable",
-    "preparation": "detailed step-by-step preparation instructions based on condition and materials",
+    "preparation": [
+      "detailed step-by-step preparation instructions based on condition and materials",
+      "each string is a separate step"
+    ],
     "location": "specific guidance on where to take it",
     "timing": "any timing considerations (e.g., collection days, seasonal programs)"
   },
@@ -116,7 +118,7 @@ Respond ONLY with valid JSON, no additional text.`;
       },
       instructions: {
         method: "Please try again or consult local guidelines",
-        preparation: "Unable to provide guidance",
+        preparation: ["Unable to provide guidance"],
         location: "Contact local waste management"
       },
       warnings: ["Service temporarily unavailable"],
@@ -139,7 +141,7 @@ Respond ONLY with valid JSON, no additional text.`;
       },
       instructions: {
         method: "Please try again or consult local guidelines",
-        preparation: "Unable to provide guidance",
+        preparation: ["Unable to provide guidance"],
         location: "Contact local waste management"
       },
       warnings: ["Service temporarily unavailable"],
