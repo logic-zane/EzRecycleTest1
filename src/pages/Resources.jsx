@@ -134,19 +134,38 @@ function Resources() {
             <h3 className="text-2xl font-bold text-green-700">Tips for Proper Recycling</h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              "Rinse containers before recycling to avoid contamination.",
-              "Flatten cardboard boxes to save space in the recycling bin.",
-              "Check local rules about removing bottle caps before recycling.",
-              "Do not recycle greasy pizza boxes; compost the clean part if possible.",
-            ].map((tip, idx) => (
-              <div
-                key={idx}
-                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition"
-              >
-                {tip}
-              </div>
-            ))}
+            <a
+              href="https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline"
+            >
+              Rinse containers before recycling to avoid contamination.
+            </a>
+            <a
+              href="https://www.swaco.org/FAQ.aspx?QID=74"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline"
+            >
+              Flatten cardboard boxes to save space in the recycling bin.
+            </a>
+            <a
+              href="https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline"
+            >
+              Check local rules about removing bottle caps before recycling.
+            </a>
+            <a
+              href="https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline"
+            >
+              Do not recycle greasy pizza boxes; compost the clean part if possible.
+            </a>
           </div>
         </div>
 
