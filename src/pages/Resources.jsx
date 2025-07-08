@@ -134,43 +134,116 @@ function Resources() {
             <h3 className="text-2xl font-bold text-green-700">Tips for Proper Recycling</h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-
-            {/* 🟢 Updated: Added links with no underline and slightly larger text */}
             {[
-              {
-                text: "Rinse containers before recycling to avoid contamination.",
-                link: "https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/",
-              },
-              {
-                text: "Flatten cardboard boxes to save space in the recycling bin.",
-                link: "https://www.swaco.org/FAQ.aspx?QID=74",
-              },
-              {
-                text: "Check local rules about removing bottle caps before recycling.",
-                link: "https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true",
-              },
-              {
-                text: "Do not recycle greasy pizza boxes; compost the clean part if possible.",
-                link: "https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/",
-              },
+              "Rinse containers before recycling to avoid contamination.",
+              "Flatten cardboard boxes to save space in the recycling bin.",
+              "Check local rules about removing bottle caps before recycling.",
+              "Do not recycle greasy pizza boxes; compost the clean part if possible.",
             ].map((tip, idx) => (
-              <a
+              <div
                 key={idx}
-                href={tip.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline block"
+                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition"
               >
-                {tip.text}
-              </a>
+                {tip}
+              </div>
             ))}
-            {/* 🔚 End of updated section */}
           </div>
         </div>
 
         {/* Community + NYC Recycling Info */}
         <div className="mt-24 space-y-16">
-          {/* ... Community and NYC Info blocks unchanged ... */}
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🤝</span>
+              <h3 className="text-2xl font-bold text-green-700">Community Volunteering</h3>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:gap-4 gap-2">
+              <a
+                href="https://bigreuse.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🌍 Big Reuse Opportunities
+              </a>
+              <a
+                href="https://earthmatter.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🌱 Earth Matter NYC
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🏩</span>
+              <h3 className="text-2xl font-bold text-green-700">NYC Recycling Info</h3>
+            </div>
+            <div className="flex flex-col sm:flex-row sm:gap-4 gap-2">
+              <a
+                href="https://portal.311.nyc.gov/article/?kanumber=KA-02013"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                📘 311 Recycling Guide
+              </a>
+              <a
+                href="https://hudsonriverpark.org/recycling-101-in-nyc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🏖️ Hudson River Park Recycling 101
+              </a>
+              <a
+                href="https://www.nyc.gov/site/dsny/collection/residents/recycling.page"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
+              >
+                🗑️ DSNY Recycling Page
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-lg p-6">
+            <div className="flex items-center mb-4">
+              <span className="text-2xl mr-2">🇺🇸</span>
+              <h3 className="text-2xl font-bold text-green-700">National Recycling Resources</h3>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {[{
+                title: "♻️ EPA Recycling Guide",
+                link: "https://www.epa.gov/recycle",
+                desc: "Tips and rules from the U.S. Environmental Protection Agency."
+              }, {
+                title: "🔍 Earth911 Search",
+                link: "https://search.earth911.com",
+                desc: "Find local recycling drop-offs by material or ZIP code."
+              }, {
+                title: "🛙 Plastic Film Recycling",
+                link: "https://www.plasticfilmrecycling.org/recycling-bags-and-wraps/find-drop-off-location/",
+                desc: "Grocery bag, shrink wrap, and soft plastic recycling locations."
+              }].map((res, idx) => (
+                <div key={idx} className="border border-green-100 rounded-xl p-5 bg-green-50 hover:bg-green-100 transition">
+                  <h4 className="text-lg font-bold text-green-800 mb-1">{res.title}</h4>
+                  <p className="text-sm text-gray-700 mb-2">{res.desc}</p>
+                  <a
+                    href={res.link}
+                    className="text-green-700 underline hover:text-green-900 text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Visit Link →
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
