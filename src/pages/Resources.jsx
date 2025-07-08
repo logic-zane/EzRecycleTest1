@@ -89,7 +89,6 @@ function Resources() {
           Get to know what materials are recyclable and how to sort them correctly.
         </p>
 
-        {/* Resource Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {cards.map((item, index) => {
             const [firstWord, ...rest] = item.title.split(" ");
@@ -127,7 +126,6 @@ function Resources() {
           })}
         </div>
 
-        {/* Recycling Tips Section */}
         <div className="bg-white rounded-2xl shadow-lg p-6 my-16">
           <div className="flex items-center mb-4">
             <span className="text-2xl mr-2">💡</span>
@@ -138,7 +136,7 @@ function Resources() {
               href="https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-800 hover:bg-green-100 transition no-underline"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
             >
               Rinse containers before recycling to avoid contamination.
             </a>
@@ -146,7 +144,7 @@ function Resources() {
               href="https://www.swaco.org/FAQ.aspx?QID=74"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-800 hover:bg-green-100 transition no-underline"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
             >
               Flatten cardboard boxes to save space in the recycling bin.
             </a>
@@ -154,7 +152,7 @@ function Resources() {
               href="https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-800 hover:bg-green-100 transition no-underline"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
             >
               Check local rules about removing bottle caps before recycling.
             </a>
@@ -162,14 +160,13 @@ function Resources() {
               href="https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-800 hover:bg-green-100 transition no-underline"
+              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
             >
               Do not recycle greasy pizza boxes; compost the clean part if possible.
             </a>
           </div>
         </div>
 
-        {/* Community + NYC Recycling Info */}
         <div className="mt-24 space-y-16">
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center mb-4">
@@ -249,7 +246,7 @@ function Resources() {
                 desc: "Grocery bag, shrink wrap, and soft plastic recycling locations."
               }].map((res, idx) => (
                 <div key={idx} className="border border-green-100 rounded-xl p-5 bg-green-50 hover:bg-green-100 transition">
-                  <h4 className="text-lg font-bold text-green-800 mb-1">{res.title}</h4>
+                  <h4 className="text-lg font-bold text-green-700 mb-1">{res.title}</h4>
                   <p className="text-sm text-gray-700 mb-2">{res.desc}</p>
                   <a
                     href={res.link}
