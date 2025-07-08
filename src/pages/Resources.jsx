@@ -127,6 +127,20 @@ function Resources() {
           })}
         </div>
 
+        {/* Recycling Tips Section */}
+        <div className="bg-white rounded-2xl shadow-lg p-6 my-16">
+          <div className="flex items-center mb-4">
+            <span className="text-2xl mr-2">💡</span>
+            <h3 className="text-2xl font-bold text-green-700">Tips for Proper Recycling</h3>
+          </div>
+          <ul className="list-disc list-inside space-y-2 text-gray-700 text-sm sm:text-base">
+            <li><strong>Rinse containers</strong> before recycling to avoid contamination.</li>
+            <li><strong>Flatten cardboard boxes</strong> to save space in the recycling bin.</li>
+            <li><strong>Check local rules</strong> about removing bottle caps before recycling.</li>
+            <li><strong>Do not recycle greasy pizza boxes</strong>; compost the clean part if possible.</li>
+          </ul>
+        </div>
+
         {/* Community + NYC Recycling Info */}
         <div className="mt-24 space-y-16">
           <div className="bg-white rounded-2xl shadow-lg p-6">
