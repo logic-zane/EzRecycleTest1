@@ -142,7 +142,7 @@ function Resources() {
             ].map((tip, idx) => (
               <div
                 key={idx}
-                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-gray-800 hover:bg-green-100 transition"
+                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition"
               >
                 {tip}
               </div>
