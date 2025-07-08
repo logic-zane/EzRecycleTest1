@@ -89,6 +89,7 @@ function Resources() {
           Get to know what materials are recyclable and how to sort them correctly.
         </p>
 
+        {/* Resource Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
           {cards.map((item, index) => {
             const [firstWord, ...rest] = item.title.split(" ");
@@ -125,7 +126,7 @@ function Resources() {
             );
           })}
         </div>
-
+        {/*recycling tips */}
         <div className="bg-white rounded-2xl shadow-lg p-6 my-16">
           <div className="flex items-center mb-4">
             <span className="text-2xl mr-2">💡</span>
@@ -166,7 +167,7 @@ function Resources() {
             </a>
           </div>
         </div>
-
+        {/* Community + NYC Recycling Info */}
         <div className="mt-24 space-y-16">
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center mb-4">
