@@ -134,51 +134,44 @@ function Resources() {
             <h3 className="text-2xl font-bold text-green-700">Tips for Proper Recycling</h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition">
+
+            {/* 🟢 Updated: Added links with no underline and slightly larger text */}
+            {[
+              {
+                text: "Rinse containers before recycling to avoid contamination.",
+                link: "https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/",
+              },
+              {
+                text: "Flatten cardboard boxes to save space in the recycling bin.",
+                link: "https://www.swaco.org/FAQ.aspx?QID=74",
+              },
+              {
+                text: "Check local rules about removing bottle caps before recycling.",
+                link: "https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true",
+              },
+              {
+                text: "Do not recycle greasy pizza boxes; compost the clean part if possible.",
+                link: "https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/",
+              },
+            ].map((tip, idx) => (
               <a
-                href="https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/"
+                key={idx}
+                href={tip.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-green-900"
+                className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base text-green-800 hover:bg-green-100 transition no-underline block"
               >
-                Rinse containers before recycling to avoid contamination.
+                {tip.text}
               </a>
-            </div>
-            <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition">
-              <a
-                href="https://www.swaco.org/FAQ.aspx?QID=74"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-green-900"
-              >
-                Flatten cardboard boxes to save space in the recycling bin.
-              </a>
-            </div>
-            <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition">
-              <a
-                href="https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-green-900"
-              >
-                Check local rules about removing bottle caps before recycling.
-              </a>
-            </div>
-            <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm text-green-800 hover:bg-green-100 transition">
-              <a
-                href="https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-green-900"
-              >
-                Do not recycle greasy pizza boxes; compost the clean part if possible.
-              </a>
-            </div>
+            ))}
+            {/* 🔚 End of updated section */}
           </div>
         </div>
 
         {/* Community + NYC Recycling Info */}
-        {/* ... (no changes below this point) ... */}
+        <div className="mt-24 space-y-16">
+          {/* ... Community and NYC Info blocks unchanged ... */}
+        </div>
       </div>
     </div>
   );
