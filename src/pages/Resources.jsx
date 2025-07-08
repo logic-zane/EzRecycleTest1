@@ -126,47 +126,48 @@ function Resources() {
             );
           })}
         </div>
-        {/*recycling tips */}
+        {/* Tips for Recycling */}  
         <div className="bg-white rounded-2xl shadow-lg p-6 my-16">
           <div className="flex items-center mb-4">
             <span className="text-2xl mr-2">💡</span>
             <h3 className="text-2xl font-bold text-green-700">Tips for Proper Recycling</h3>
           </div>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3">
             <a
               href="https://ecomyths.org/myth-you-must-rinse-all-containers-before-recycling-them/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
+              className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
             >
-              Rinse containers before recycling to avoid contamination.
+              Rinse containers before recycling to avoid contamination
             </a>
             <a
               href="https://www.swaco.org/FAQ.aspx?QID=74"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
+              className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
             >
-              Flatten cardboard boxes to save space in the recycling bin.
+              Flatten cardboard boxes to save space
             </a>
             <a
               href="https://recyclerightny.recyclist.co/guide/plastic-caps/?embeddedguide=true"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
+              className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
             >
-              Check local rules about removing bottle caps before recycling.
+              Check local rules about bottle caps
             </a>
             <a
               href="https://sogreenpack.com/post/can-greasy-pizza-boxes-be-recycled-or-composted-a-comprehensive-guide/"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-base font-bold text-green-700 hover:bg-green-100 transition no-underline"
+              className="inline-flex items-center bg-green-50 hover:bg-green-100 text-green-700 font-medium px-4 py-2 rounded-full border border-green-200 transition"
             >
-              Do not recycle greasy pizza boxes; compost the clean part if possible.
+              Don't recycle greasy pizza boxes
             </a>
           </div>
         </div>
+
         {/* Community + NYC Recycling Info */}
         <div className="mt-24 space-y-16">
           <div className="bg-white rounded-2xl shadow-lg p-6">
